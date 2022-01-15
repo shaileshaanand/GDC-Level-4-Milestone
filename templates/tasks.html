@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tasks</title>
+  </head>
+  <body>
+    Tasks
+    <ol>
+      {% for task in tasks %}
+      <li>
+        {{task}}
+        <form
+          style="display: inline"
+          action="/delete-task/{{forloop.counter}}"
+          method="get"
+        >
+          <input type="submit" value="Delete" />
+        </form>
+        <form
+          style="display: inline"
+          action="/complete_task/{{forloop.counter}}"
+          method="get"
+        >
+          <input type="submit" value="Complete" />
+        </form>
+      </li>
+      {% endfor %}
+    </ol>
+    <br />
+    <form action="/add-task/" method="get">
+      <div>
+        <label for="task">Task name:</label>
+        <input type="text" name="task" id="task" />
+        <input type="submit" value="Add" />
+      </div>
+    </form>
+  </body>
+</html>
